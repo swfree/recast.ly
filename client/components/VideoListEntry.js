@@ -1,5 +1,4 @@
 var VideoListEntry = (props) => {
-  varchangeCurrentVideo 
 
   return (
     <div className="video-list-entry">
@@ -12,6 +11,6 @@ var VideoListEntry = (props) => {
       </div>
     </div>
   );
-}
+};
 
 window.VideoListEntry = VideoListEntry;
