@@ -4,7 +4,6 @@ var VideoListEntry = (props) => {
     props.onUserClick(props.data);
   };
 
-
   return (
     <div className="video-list-entry">
       <div className="media-left media-middle">

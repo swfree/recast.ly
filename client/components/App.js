@@ -1,9 +1,18 @@
 class App extends React.Component {
   constructor() {
     super();
+
     this.state = {
-      currentVideoList: exampleVideoData,
-      currentVideo: exampleVideoData[0]
+      currentVideoList: searchYouTube('rihanna', 
+        function(data) { 
+          console.log(data.items); 
+          return data.items;
+        }),
+      currentVideo: searchYouTube('rihanna', 
+        function(data) { 
+          console.log(data.items[0]); 
+          return data.items[0]; 
+        })
     };
   }
 
