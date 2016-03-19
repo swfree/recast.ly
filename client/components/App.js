@@ -3,19 +3,37 @@ class App extends React.Component {
     super();
 
     this.state = {
-      currentVideoList: exampleVideoData,
-      currentVideo: exampleVideoData[0]
-                  //   {
-                  //     "id": {
-                  //       "videoId": ""
-                  //     },
-                  //     "snippet": {
-                  //       "title": "Video Title",
-                  //       "description": "Video Discription",
-                  //     }
-                  //   }
+      currentVideoList: [],
+      currentVideo: {
+        "id": {
+          "videoId": ""
+        },
+        "snippet": {
+          "title": "There is no video",
+          "description": "There is no description"
+        }
+      }
     };
   }
+
+  componentDidMount() {
+    searchYouTube('bunnies', (data) => {
+      this.setState({
+        currentVideoList: data.items,
+        currentVideo: data.items[0],
+      });
+    });
+  }
+
+  // componentDidMount() {
+  //   console.log('component did mount called');
+
+  //   searchYouTube(this.refs.myInput.value, function(data) {
+  //     this.setState({
+  //       currentVideoList: data.items
+  //     });
+  //   });
+  // }
 
   handleUserClick(video) {
     this.setState({
@@ -25,13 +43,14 @@ class App extends React.Component {
 
   handleUserSearch(videoList) {
     this.setState({
-      currentVideoList: videoList
+      currentVideoList: videoList,
+      currentVideo: videoList[0]
     });
   }
 
   render() {
     return (
-      <div>
+      <div ref="ourApp">
         <Nav onUserSearch={this.handleUserSearch.bind(this)} />
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
