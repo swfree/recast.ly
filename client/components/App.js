@@ -3,16 +3,17 @@ class App extends React.Component {
     super();
 
     this.state = {
-      currentVideoList: searchYouTube('rihanna', 
-        function(data) { 
-          console.log(data.items); 
-          return data.items;
-        }),
-      currentVideo: searchYouTube('rihanna', 
-        function(data) { 
-          console.log(data.items[0]); 
-          return data.items[0]; 
-        })
+      currentVideoList: exampleVideoData,
+      currentVideo: exampleVideoData[0]
+                  //   {
+                  //     "id": {
+                  //       "videoId": ""
+                  //     },
+                  //     "snippet": {
+                  //       "title": "Video Title",
+                  //       "description": "Video Discription",
+                  //     }
+                  //   }
     };
   }
 
@@ -22,10 +23,16 @@ class App extends React.Component {
     });
   }
 
+  handleUserSearch(videoList) {
+    this.setState({
+      currentVideoList: videoList
+    });
+  }
+
   render() {
     return (
       <div>
-        <Nav />
+        <Nav onUserSearch={this.handleUserSearch.bind(this)} />
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>

@@ -11,8 +11,8 @@ var searchYouTube = (query, callback) => {
       type: 'video'
     },
     success: function(data) {
-      console.log('successful query: ', data);
-      return callback(data);
+      console.error('Successful get request: ', data);
+      callback(data);
     },
     error: function(data) {
       console.error('Unsuccessful get request: ', data);
