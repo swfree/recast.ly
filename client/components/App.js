@@ -7,9 +7,9 @@ class App extends React.Component {
     };
   }
 
-  videoListEntryOnClick() {
+  handleUserClick(video) {
     this.setState({
-      currentVideo: () => console.log('clicked')
+      currentVideo: video
     });
   }
 
@@ -21,7 +21,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.currentVideoList} state={this.state}/>
+          <VideoList videos={this.state.currentVideoList} onUserClick={this.handleUserClick.bind(this)}/>
         </div>
       </div>
     );
