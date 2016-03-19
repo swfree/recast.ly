@@ -3,6 +3,8 @@ class App extends React.Component {
     super();
 
     this.state = {
+      autoplay: true,
+      toggleState: "On",
       currentVideoList: [],
       currentVideo: {
         "id": {
@@ -25,6 +27,13 @@ class App extends React.Component {
     });
   }
 
+  handleToggle() {
+    this.setState({
+      autoplay: !this.state.autoplay,
+      toggleState: this.state.toggleState === 'On' ? 'Off' : 'On'
+    });
+  }
+
   handleUserClick(video) {
     this.setState({
       currentVideo: video
@@ -43,9 +52,11 @@ class App extends React.Component {
       <div ref="ourApp">
         <Nav onUserSearch={this.handleUserSearch.bind(this)} />
         <div className="col-md-7">
-          <VideoPlayer video={this.state.currentVideo}/>
+          <VideoPlayer autoplayToggle={this.state.autoplay} video={this.state.currentVideo}/>
+          <VideoDetails video={this.state.currentVideo} />
         </div>
         <div className="col-md-5">
+          <button onClick={this.handleToggle.bind(this)}>Autoplay {this.state.toggleState}</button>
           <VideoList videos={this.state.currentVideoList} onUserClick={this.handleUserClick.bind(this)}/>
         </div>
       </div>
