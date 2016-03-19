@@ -25,16 +25,6 @@ class App extends React.Component {
     });
   }
 
-  // componentDidMount() {
-  //   console.log('component did mount called');
-
-  //   searchYouTube(this.refs.myInput.value, function(data) {
-  //     this.setState({
-  //       currentVideoList: data.items
-  //     });
-  //   });
-  // }
-
   handleUserClick(video) {
     this.setState({
       currentVideo: video
